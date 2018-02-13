@@ -2,7 +2,7 @@
 
 ### Problem
 
-The problem is compute all possible ways an order can shipped (called shipments) given inventory across a set of warehouses (called inventory distribution). 
+The problem is compute all possible ways an order can be shipped (called shipments) given inventory across a set of warehouses (called inventory distribution). 
 
 Inventory allocator is a class that computes all possible shipments given a particular inventory distribution. The way we would use the output is take each shipment configuration and estimate how much it costs and pick the optimal one.
 
@@ -19,7 +19,7 @@ The second input will be a map of warehouses to inventory amounts (inventory dis
           dm: { banana: 5, orange: 10 } 
 }`
 
-You can assume that if all units of an item can be shipped from one warehouse they will. Splitting units of an items across warehouses like shipping 4 apples from owd and 1 apple from dm will only be if there is no other way to ship the order. 
+You can assume that if all units of an item can be shipped from one warehouse they will. Splitting units of an items across warehouses will be last resort measure. For example shipping 4 apples from owd and 1 apple from dm will only be done if there is no other way to ship the item. 
 
 You can use any language of your choice to write the solution (internally we use Typescript/Javascript and some Java). Please write unit tests with your code, a few are mentioned below, but these are not comprehensive. Fork the repository and put your solution inside of the src directory and include a way to run your tests!
 
