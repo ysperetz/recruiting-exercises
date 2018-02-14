@@ -35,7 +35,7 @@ Output: `[{ owd: { apple: 1 } }]`
 Input: `{ apple: 1 }, { owd: { apple: 0 } }`  
 Output: `[]`
 
-*Should split an item across warehouses:*
+*Should split an item across warehouses if that is the only way to completely ship an item:*
 
 Input: `{ apple: 10 }, { owd: { apple: 5 }, dm: { apple: 5 }}`  
 Output: `[{ dm: { apple: 5 }, owd: { apple: 5 } }]`
@@ -48,7 +48,7 @@ Input: ```
           owd: { apple: 5, orange: 10 }, 
           dm: { banana: 5, orange: 10 } 
        })```  
-Output: `[{ dm: { banana: 5 }, owd: { apple: 5, orange: 5 } }]`
+Output: `[{ dm: { banana: 5 }, owd: { apple: 5, orange: 5 } }, { dm: { banana: 5, orange: 5 }, owd: { apple: 5 } }]`
 
 ### What are we looking for
 
