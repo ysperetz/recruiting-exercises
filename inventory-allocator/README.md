@@ -2,53 +2,47 @@
 
 ### Problem
 
-The problem is compute all possible ways an order can be shipped (called shipments) given inventory across a set of warehouses (called inventory distribution). 
+The problem is compute the best way an order can be shipped (called shipments) given inventory across a set of warehouses (called inventory distribution). 
 
-Inventory allocator is a class that computes all possible shipments given a particular inventory distribution. The way we would use the output is take each shipment configuration and estimate how much it costs and pick the optimal one.
-
-Your task is to implement InventoryAllocator class to produce all possible shipments. The class should have one function that takes in some input. 
+Your task is to implement InventoryAllocator class to produce the cheapest shipment.
 
 The first input will be an order: a map of items that are being ordered and how many of them are ordered. For example an order of apples, bananas and oranges of 5 units each will be 
 
 `{ apple: 5, banana: 5, orange: 5 }`
 
-The second input will be a map of warehouses to inventory amounts (inventory distribution) for these items. For example the inventory across two warehouses called owd and dm for apples, bananas and oranges could look like
+The second input will be a list of object with warehouse name and inventory amounts (inventory distribution) for these items. For example the inventory across two warehouses called owd and dm for apples, bananas and oranges could look like
 
-`{ 
-          owd: { apple: 5, orange: 10 }, 
-          dm: { banana: 5, orange: 10 } 
-}`
+`[ 
+    {
+    	name: owd,
+    	inventory: { apple: 5, orange: 10 }
+    }, 
+    {
+    	name: dm:,
+    	inventory: { banana: 5, orange: 10 } 
+    }
+]`
 
-You can assume that if all units of an item can be shipped from one warehouse they will. Splitting units of an items across warehouses will be last resort measure. For example shipping 4 apples from owd and 1 apple from dm will only be done if there is no other way to ship the item. 
+You can assume that the list of warehouses is pre-sorted based on cost. The first warehouse will be more expensive to ship from than the second warehouse. 
 
-You can use any language of your choice to write the solution (internally we use Typescript/Javascript and some Java). Please write unit tests with your code, a few are mentioned below, but these are not comprehensive. Fork the repository and put your solution inside of the src directory and include a way to run your tests!
+You can use any language of your choice to write the solution (internally we use Typescript/Javascript, Python, and some Java). Please write unit tests with your code, a few are mentioned below, but these are not comprehensive. Fork the repository and put your solution inside of the src directory and include a way to run your tests!
 
 ### Examples
 
 *Happy Case, exact inventory match!**
 
-Input: `{ apple: 1 }, { owd: { apple: 1 } }`  
+Input: `{ apple: 1 }, [{ name: owd, inventory: { apple: 1 } }]`  
 Output: `[{ owd: { apple: 1 } }]`
 
 *Not enough inventory -> no allocations!*
 
-Input: `{ apple: 1 }, { owd: { apple: 0 } }`  
+Input: `{ apple: 1 }, [{ name: owd, inventory: { apple: 0 } }]`  
 Output: `[]`
 
 *Should split an item across warehouses if that is the only way to completely ship an item:*
 
-Input: `{ apple: 10 }, { owd: { apple: 5 }, dm: { apple: 5 }}`  
+Input: `{ apple: 10 }, [{ name: owd, inventory: { apple: 5 } }, { name: dm, inventory: { apple: 5 }}]`  
 Output: `[{ dm: { apple: 5 }, owd: { apple: 5 } }]`
-
-*Should provide two suggestions if an item can go in either warehouse:*
-
-Input: ```   
-       ({ apple: 5, banana: 5, orange: 5 }, 
-       { 
-          owd: { apple: 5, orange: 10 }, 
-          dm: { banana: 5, orange: 10 } 
-       })```  
-Output: `[{ dm: { banana: 5 }, owd: { apple: 5, orange: 5 } }, { dm: { banana: 5, orange: 5 }, owd: { apple: 5 } }]`
 
 ### What are we looking for
 
