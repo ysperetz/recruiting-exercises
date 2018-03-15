@@ -42,7 +42,7 @@ Output: `[]`
 *Should split an item across warehouses if that is the only way to completely ship an item:*
 
 Input: `{ apple: 10 }, [{ name: owd, inventory: { apple: 5 } }, { name: dm, inventory: { apple: 5 }}]`  
-Output: `[{ dm: { apple: 5 }, owd: { apple: 5 } }]`
+Output: `[{ dm: { apple: 5 }}, { owd: { apple: 5 } }]`
 
 ### What are we looking for
 
